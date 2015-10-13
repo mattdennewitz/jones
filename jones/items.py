@@ -11,3 +11,5 @@ class ArtworkItem(scrapy.Item):
     url = scrapy.Field()
     thumbnail = scrapy.Field()
     on_display = scrapy.Field()
+    year = scrapy.Field()
+    medium = scrapy.Field()
