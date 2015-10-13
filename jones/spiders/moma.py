@@ -75,7 +75,7 @@ class MomaSpider(scrapy.Spider):
             'boolean(//button[@data-more-results-bottom-button])').extract()
         has_more = bool(int(has_more[0]))
 
-        if has_more and self.current_page < 5:
+        if has_more:
             self.current_page += 1
             self.logger.info('Requesting next page: '
                              + str(self.current_page))
