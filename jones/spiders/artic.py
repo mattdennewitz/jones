@@ -109,32 +109,3 @@ class ArticSpider(BaseArtworkSpider):
 
     def get_artwork_detail_selector(self, response):
         return ARTWORK_DETAIL_SELECTOR
-
-    def parse(self, response):
-        """Extracts artworks from ARTIC search results pages
-        """
-
-        # scrape all artworks on this page
-        for artwork_url in response.css(ARTWORK_DETAIL_SELECTOR).extract():
-            artwork_url = urlparse.urljoin(response.url, artwork_url)
-            self.logger.debug('Requesting artwork detail: ' + artwork_url)
-            yield scrapy.Request(artwork_url, callback=self.parse_artwork)
-
-        # if there's a next page, grab the next page
-        for page_selector in PAGE_SELECTORS:
-            pager = response.css(page_selector).extract()
-
-            if len(pager) == 0:
-                self.logger.warning('Skipping selector '
-                                    + page_selector
-                                    + ' with 0 results')
-                continue
-
-            for url in pager:
-                url = urlparse.urljoin(response.url, url)
-
-                self.logger.info('Requesting next page: ' + url)
-
-                yield scrapy.Request(url, callback=self.parse)
-
-            break

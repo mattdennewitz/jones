@@ -72,14 +72,17 @@ class BaseArtworkSpider(scrapy.Spider):
 
         yield item
 
-    def parse(self, response):
-        """Extracts artworks from ARTIC search results pages
-        """
-
+    def get_artwork_urls(self, response):
         artwork_detail_selector = self.get_artwork_detail_selector(response)
 
+        return response.css(artwork_detail_selector).extract()
+
+    def parse(self, response):
+        """Extracts artworks from list pages
+        """
+
         # scrape all artworks on this page
-        for artwork_url in response.css(ARTWORK_DETAIL_SELECTOR).extract():
+        for artwork_url in self.get_artwork_urls(response):
             artwork_url = urlparse.urljoin(response.url, artwork_url)
             self.logger.debug('Requesting artwork detail: ' + artwork_url)
             yield scrapy.Request(artwork_url, callback=self.parse_artwork)
