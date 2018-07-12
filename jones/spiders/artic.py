@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import urlparse
+from urllib import parse as urlparse
 
 import scrapy
 from scrapy.loader import ItemLoader

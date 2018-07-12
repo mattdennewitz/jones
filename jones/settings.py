@@ -1,14 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for jones project
-#
-# For simplicity, this file contains only settings considered important or
-# commonly used. You can find more settings consulting the documentation:
-#
-#     http://doc.scrapy.org/en/latest/topics/settings.html
-#     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-
 REDIS_NEW_ARTWORK_KEY = 'naq'
 
 BOT_NAME = 'jones'
@@ -17,7 +8,7 @@ SPIDER_MODULES = ['jones.spiders']
 NEWSPIDER_MODULE = 'jones.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'indiana jones (+http://whatsondisplay.com)'
+USER_AGENT = 'jones (+https://whatsondisplay.com)'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS=16

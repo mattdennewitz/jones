@@ -3,10 +3,15 @@
 import scrapy
 
 
+class Artist(scrapy.Item):
+    name = scrapy.Field()
+    url = scrapy.Field()
+
+
 class ArtworkItem(scrapy.Item):
-    museum_code = scrapy.Field()
-    artist_name = scrapy.Field()
-    artist_url = scrapy.Field()
+    museum_code = scrapy.Field() # e.g., "artic"
+    accession_no = scrapy.Field()
+    artist = scrapy.Field() # `Artist` instance
     title = scrapy.Field()
     url = scrapy.Field()
     thumbnail = scrapy.Field()
